@@ -57,10 +57,9 @@ namespace pract7_trpo.Pages
         {
             if (File.Exists($"P_{currentPatient.ID}"))
             {
-                Appointment appointment = new Appointment() { date = DateTime.Today.Date.ToString("G"), diagnosis = currentPatient.Diagnosis, doctor_id = currentPatient.LastDoctor, recomendations = currentPatient.Recomendations};
+                Appointment appointment = new Appointment() { Date = DateTime.Today, diagnosis = currentPatient.Diagnosis, doctor_id = currentPatient.LastDoctor, recomendations = currentPatient.Recomendations};
                 currentPatient.AppointmentStories.Add(appointment);
                 string jsonString = JsonSerializer.Serialize(currentPatient);
-                currentPatient.LastAppointment = DateTime.Today.Date.ToString("G");
                 currentPatient.LastDoctorName = GetDoctorByID(currentPatient.LastDoctor.ToString());
                 File.WriteAllText($"P_{currentPatient.ID}", jsonString);
                 MessageBox.Show($"Данные о пациенте обновлены");

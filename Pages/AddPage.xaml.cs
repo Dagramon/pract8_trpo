@@ -86,7 +86,6 @@ namespace pract7_trpo.Pages
                     addedPatient.Birthday != null &&
                     addedPatient.PhoneNumber != null)
                 {
-                    addedPatient.LastAppointment = DateTime.Now.Date.ToString("G");
                     addedPatient.LastDoctor = Convert.ToInt32(currentDoctor.ID);
                     string ID = CreatePatientID();
                     addedPatient.LastDoctorName = GetDoctorByID(addedPatient.LastDoctor.ToString());

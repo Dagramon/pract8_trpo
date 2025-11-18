@@ -36,6 +36,7 @@ namespace pract7_trpo.Pages
             Info.UpdateList();
             currentDoctor = _currentDoctor;
             InfoForm.DataContext = currentDoctor;
+            FindBox.DataContext = info;
             DataContext = this;
         }
 

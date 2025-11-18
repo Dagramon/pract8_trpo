@@ -17,6 +17,8 @@ namespace pract7_trpo
         private int patients { get; set; }
         private int doctors { get; set; }
 
+        private static string findString { get; set; } = "";
+
         public static ObservableCollection<Patient> PatientsList = new();
 
         public int JSONFiles
@@ -35,6 +37,11 @@ namespace pract7_trpo
             set { doctors = value; OnPropertyChanged(); }
         }
 
+        public string FindString
+        {
+            get { return findString; }
+            set { findString = value; OnPropertyChanged(); UpdateList(); }
+        }
         private static string GetDoctorByID(string ID)
         {
             if (File.Exists($"D_{ID}"))
@@ -50,17 +57,31 @@ namespace pract7_trpo
         public static void UpdateList()
         {
             PatientsList.Clear();
-            using (StreamReader sr = File.OpenText("Patient_IDS.txt"))
+            if (File.Exists("Patient_IDS.txt"))
             {
-                while (!sr.EndOfStream)
+                using (StreamReader sr = File.OpenText("Patient_IDS.txt"))
                 {
-                    Patient patient;
-                    string id = sr.ReadLine();
-                    string jsonString = File.ReadAllText($"P_{id}");
-                    patient = JsonSerializer.Deserialize<Patient>(jsonString);
-                    patient.LastDoctorName = GetDoctorByID(patient.LastDoctor.ToString());
-                    PatientsList.Add(patient);
+                    while (!sr.EndOfStream)
+                    {
+                        Patient patient;
+                        string id = sr.ReadLine();
+                        string jsonString = File.ReadAllText($"P_{id}");
+                        patient = JsonSerializer.Deserialize<Patient>(jsonString);
+                        patient.LastDoctorName = GetDoctorByID(patient.LastDoctor.ToString());
+                        if (patient.ID.StartsWith(findString))
+                        {
+                            PatientsList.Add(patient);
+                        }
+                        else if (findString == string.Empty)
+                        { 
+                            PatientsList.Add(patient);
+                        }
+                    }
                 }
+            }
+            else
+            {
+                File.CreateText("Patient_IDS.txt");
             }
         }
 

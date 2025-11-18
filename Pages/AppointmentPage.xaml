@@ -25,7 +25,6 @@
                             <Label Content="Имя: "></Label>
                             <Label Content="Фамилия: "></Label>
                             <Label Content="Отчество: "></Label>
-                            <Label Content="Последний приём: "></Label>
                             <Label Content="Последний врач: "></Label>
                             <Label Content="Дата рождения"></Label>
                         </StackPanel>
@@ -33,9 +32,8 @@
                             <Label Content="{Binding Name}"></Label>
                             <Label Content="{Binding LastName}"></Label>
                             <Label Content="{Binding MiddleName}"></Label>
-                            <Label Content="{Binding LastAppointment}"></Label>
                             <Label Content="{Binding LastDoctorName}"></Label>
-                            <Label Content="{Binding Birthday}"></Label>
+                            <Label Content="{Binding BirthdayString}"></Label>
                         </StackPanel>
                     </StackPanel>
                     <Label Content="Диагноз:"></Label>
@@ -63,7 +61,7 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Дата: "></TextBlock>
-                                <TextBlock Text="{Binding date}"></TextBlock>
+                                <TextBlock Text="{Binding dateString}"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="ID доктора: "></TextBlock>

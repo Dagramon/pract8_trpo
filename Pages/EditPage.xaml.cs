@@ -59,7 +59,6 @@ namespace pract7_trpo.Pages
             if (File.Exists($"P_{currentPatient.ID}"))
             {
                 string jsonString = JsonSerializer.Serialize(currentPatient);
-                currentPatient.LastAppointment = DateTime.Today.Date.ToString("G");
                 currentPatient.LastDoctorName = GetDoctorByID(currentPatient.LastDoctor.ToString());
                 File.WriteAllText($"P_{currentPatient.ID}", jsonString);
                 MessageBox.Show($"Данные о пациенте обновлены");

@@ -36,40 +36,43 @@
             <Button Width="300" Margin="5" Click="AppointmentButton_Click">Начать приём</Button>
             <Button Width="300" Margin="5" Click="EditButton_Click">Изменить информацию</Button>
         </StackPanel>
-        <ListView Grid.Column="1" Grid.Row="1"
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBox x:Name="FindBox" Text="{Binding FindString, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <ListView Height="400"
                       ItemsSource="{Binding Patients}"
                       SelectedItem="{Binding currentPatient}"
                       MouseDoubleClick="EditButton_Click">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Идентификатор: "></TextBlock>
-                            <TextBlock Text="{Binding ID}"></TextBlock>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Идентификатор: "></TextBlock>
+                                <TextBlock Text="{Binding ID}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Имя: "></TextBlock>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Фамилия: "></TextBlock>
+                                <TextBlock Text="{Binding LastName}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Отчество: "></TextBlock>
+                                <TextBlock Text="{Binding MiddleName}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Номер телефона: "></TextBlock>
+                                <TextBlock Text="{Binding PhoneNumber}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Диагноз: "></TextBlock>
+                                <TextBlock Text="{Binding Diagnosis}"></TextBlock>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Имя: "></TextBlock>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Фамилия: "></TextBlock>
-                            <TextBlock Text="{Binding LastName}"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Отчество: "></TextBlock>
-                            <TextBlock Text="{Binding MiddleName}"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Номер телефона: "></TextBlock>
-                            <TextBlock Text="{Binding PhoneNumber}"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Диагноз: "></TextBlock>
-                            <TextBlock Text="{Binding Diagnosis}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>
